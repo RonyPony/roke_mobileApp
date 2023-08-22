@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rokeapp/routes/routes.dart';
+import 'package:rokeapp/screen/landing/landing.screen.dart';
+import 'package:rokeapp/widgets/highlight.widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: getApplicationRoutes(),
       home: const MyHomePage(),
     );
   }
@@ -59,24 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 'assets/landing1.svg',
                 height: 250,
               ),
-              Container(
-                height: 50,
-                width: MediaQuery.sizeOf(context).width * .95,
-                decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xff00FFF0),
-                        Colors.transparent,
-                        Colors.transparent
-                        // Color(0xff00FFF0).withOpacity(0),
-                      ],
-                    ),
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(40)),
-              ),
-              SvgPicture.asset('assets/nextBtn.svg')
+              Highlight(),
+              GestureDetector(
+                onTap:(){
+                  Navigator.of(context).pushNamed(LandingPage.routeName);
+                },child:SvgPicture.asset('assets/nextBtn.svg'))
             ],
           ),
         ),
