@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rokeapp/screen/home/home.screen.dart';
 import 'package:rokeapp/widgets/mainBtn.widget.dart';
 import 'package:rokeapp/widgets/textField.widget.dart';
 
@@ -79,7 +80,12 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              RokeMainBtn(text: "entrar"),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        HomeScreen.routeName, (route) => false);
+                  },
+                  child: RokeMainBtn(text: "entrar")),
               SizedBox(
                 height: 30,
               ),
