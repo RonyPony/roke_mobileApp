@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,12 +16,13 @@ class HomeScreen extends StatelessWidget {
       ),
       Scaffold(
         backgroundColor: Colors.transparent,
+        bottomNavigationBar: _buildBottomMenu(context),
         body: SafeArea(
           child: Column(
             children: [
               _buildHeaderTitle(),
               _buildKPIs(context),
-              _buildOptions()
+              _buildOptions(),
             ],
           ),
         ),
@@ -189,5 +191,9 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _buildBottomMenu(BuildContext context) {
+    return BottomMenu();
   }
 }
