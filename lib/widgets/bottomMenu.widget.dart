@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rokeapp/screen/home/home.screen.dart';
 
 class BottomMenu extends StatelessWidget {
   const BottomMenu({super.key});
@@ -12,7 +13,12 @@ class BottomMenu extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset('assets/home.svg'),
+          GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    HomeScreen.routeName, (route) => false);
+              },
+              child: SvgPicture.asset('assets/home.svg')),
           SizedBox(
             width: MediaQuery.sizeOf(context).width / 4,
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rokeapp/screen/asigmentsDetails/assigmentsDetails.screen.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               _buildHeaderTitle(),
               _buildKPIs(context),
-              _buildOptions(),
+              _buildOptions(context),
             ],
           ),
         ),
@@ -132,7 +133,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  _buildOptions() {
+  _buildOptions(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Container(
@@ -142,8 +143,13 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildAnOption("asignaciones",
-                    SvgPicture.asset('assets/task.svg'), Color(0xffAC8700)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(AssigmentDetails.routeName);
+                  },
+                  child: _buildAnOption("asignaciones",
+                      SvgPicture.asset('assets/task.svg'), Color(0xffAC8700)),
+                ),
                 _buildAnOption("completadas",
                     SvgPicture.asset('assets/done.svg'), Color(0xff0E6500))
               ],
