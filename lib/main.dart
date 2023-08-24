@@ -61,13 +61,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               SvgPicture.asset(
                 'assets/landing1.svg',
-                height: 250,
+                height: MediaQuery.sizeOf(context).width * .6,
               ),
               Highlight(),
               GestureDetector(
-                onTap:(){
-                  Navigator.of(context).pushNamed(LandingPage.routeName);
-                },child:SvgPicture.asset('assets/nextBtn.svg'))
+                  onTap: () {
+                    Navigator.of(context).pushNamed(LandingPage.routeName);
+                  },
+                  child: SvgPicture.asset('assets/nextBtn.svg'))
             ],
           ),
         ),

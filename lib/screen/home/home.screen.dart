@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/screen/asigmentsDetails/assigmentsDetails.screen.dart';
+import 'package:rokeapp/screen/completedasigmentsList/completedAssigmentsList.screen.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,12 +20,14 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         bottomNavigationBar: _buildBottomMenu(context),
         body: SafeArea(
-          child: Column(
-            children: [
-              _buildHeaderTitle(),
-              _buildKPIs(context),
-              _buildOptions(context),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _buildHeaderTitle(),
+                _buildKPIs(context),
+                _buildOptions(context),
+              ],
+            ),
           ),
         ),
       )
@@ -40,7 +43,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               Text(
                 "Bienvenido de vuelta Marcos",
-                style: TextStyle(color: Colors.white, fontSize: 28),
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ],
           ),
@@ -48,7 +51,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               Text(
                 "Aqui estamos, listos y a tus ordenes",
-                style: TextStyle(color: Colors.white, fontSize: 20),
+                style: TextStyle(color: Colors.white, fontSize: 18),
               ),
             ],
           ),
@@ -147,20 +150,38 @@ class HomeScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).pushNamed(AssigmentDetails.routeName);
                   },
-                  child: _buildAnOption("asignaciones",
-                      SvgPicture.asset('assets/task.svg'), Color(0xffAC8700)),
+                  child: _buildAnOption(
+                      "asignaciones",
+                      SvgPicture.asset('assets/task.svg'),
+                      Color(0xffAC8700),
+                      context),
                 ),
-                _buildAnOption("completadas",
-                    SvgPicture.asset('assets/done.svg'), Color(0xff0E6500))
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushNamed(CompletedAssigments.routeName);
+                  },
+                  child: _buildAnOption(
+                      "completadas",
+                      SvgPicture.asset('assets/done.svg'),
+                      Color(0xff0E6500),
+                      context),
+                )
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildAnOption("estadisticas",
-                    SvgPicture.asset('assets/stats.svg'), Color(0xffB1B1B1)),
-                _buildAnOption("identificacion",
-                    SvgPicture.asset('assets/carnet.svg'), Color(0xff0A87BC))
+                _buildAnOption(
+                    "estadisticas",
+                    SvgPicture.asset('assets/stats.svg'),
+                    Color(0xffB1B1B1),
+                    context),
+                _buildAnOption(
+                    "identificacion",
+                    SvgPicture.asset('assets/carnet.svg'),
+                    Color(0xff0A87BC),
+                    context)
               ],
             )
           ],
@@ -169,9 +190,11 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  _buildAnOption(String s, SvgPicture svgPicture, Color red) {
+  _buildAnOption(
+      String s, SvgPicture svgPicture, Color red, BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.only(
+          left: MediaQuery.sizeOf(context).width * .05, top: 10, bottom: 10),
       child: Container(
         height: 150,
         width: 150,

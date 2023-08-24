@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 
-class AssigmentDetails extends StatelessWidget {
-  const AssigmentDetails({super.key});
-  static String routeName = "/AssigmentDetails";
+class CompletedAssigments extends StatelessWidget {
+  const CompletedAssigments({super.key});
+  static String routeName = "/CompletedAssigments";
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -75,16 +75,16 @@ class AssigmentDetails extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: Color(0xffAC8700),
+                      color: Color(0xff158603),
                       borderRadius: BorderRadius.circular(50)),
-                  child: SvgPicture.asset('assets/task.svg'),
+                  child: SvgPicture.asset('assets/done.svg'),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
                 Text(
-                  "Mis Asignaciones",
-                  style: TextStyle(fontSize: 20, color: Color(0xffAC8700)),
+                  "Asignaciones Completadas",
+                  style: TextStyle(fontSize: 18, color: Color(0xff158603)),
                 )
               ],
             ),
@@ -111,12 +111,15 @@ class AssigmentDetails extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
               child: ListTile(
-                leading: SvgPicture.asset('assets/pendingtask.svg'),
+                leading: SvgPicture.asset('assets/done2.svg'),
                 subtitle: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      SvgPicture.asset('assets/location.svg'),
+                      SvgPicture.asset(
+                        'assets/location.svg',
+                        color: Color(0xff158603),
+                      ),
                       Text("Av. Maximo Gomez " + index.toString()),
                     ],
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:rokeapp/screen/asigmentsDetails/assigmentsDetails.screen.dart';
+import 'package:rokeapp/screen/completedasigmentsList/completedAssigmentsList.screen.dart';
 import 'package:rokeapp/screen/forgottenPassword/forgottenPassword.screen.dart';
 import 'package:rokeapp/screen/home/home.screen.dart';
 import 'package:rokeapp/screen/landing/landing.screen.dart';
@@ -14,5 +15,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     HomeScreen.routeName: (BuildContext context) => const HomeScreen(),
     AssigmentDetails.routeName: (BuildContext context) =>
         const AssigmentDetails(),
+    CompletedAssigments.routeName: (BuildContext context) =>
+        const CompletedAssigments(),
   };
 }
