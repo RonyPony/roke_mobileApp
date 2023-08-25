@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/screen/asigmentsDetails/assigmentsDetails.screen.dart';
 import 'package:rokeapp/screen/completedasigmentsList/completedAssigmentsList.screen.dart';
+import 'package:rokeapp/screen/stats/stats.screen.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -148,7 +149,8 @@ class HomeScreen extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushNamed(AssigmentDetails.routeName);
+                    Navigator.of(context)
+                        .pushNamed(AssignmentsDetails.routeName);
                   },
                   child: _buildAnOption(
                       "asignaciones",
@@ -159,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context)
-                        .pushNamed(CompletedAssigments.routeName);
+                        .pushNamed(CompletedAssignments.routeName);
                   },
                   child: _buildAnOption(
                       "completadas",
@@ -172,11 +174,16 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildAnOption(
-                    "estadisticas",
-                    SvgPicture.asset('assets/stats.svg'),
-                    Color(0xffB1B1B1),
-                    context),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(StatsScreen.routeName);
+                  },
+                  child: _buildAnOption(
+                      "estadisticas",
+                      SvgPicture.asset('assets/stats.svg'),
+                      Color(0xffB1B1B1),
+                      context),
+                ),
                 _buildAnOption(
                     "identificacion",
                     SvgPicture.asset('assets/carnet.svg'),

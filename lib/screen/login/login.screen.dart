@@ -97,7 +97,7 @@ class LoginScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context)
-                        .pushNamed(ForgotenPasswordScreen.routeName);
+                        .pushNamed(ForgottenPasswordScreen.routeName);
                   },
                   child: Text(
                     "OLVIDASTE TU CLAVE ?",

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 
-class CompletedAssigments extends StatelessWidget {
-  const CompletedAssigments({super.key});
+class CompletedAssignments extends StatelessWidget {
+  const CompletedAssignments({super.key});
   static String routeName = "/CompletedAssigments";
   @override
   Widget build(BuildContext context) {

@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/widgets/mainBtn.widget.dart';
 import 'package:rokeapp/widgets/textField.widget.dart';
 
-class ForgotenPasswordScreen extends StatelessWidget {
-  const ForgotenPasswordScreen({super.key});
+class ForgottenPasswordScreen extends StatelessWidget {
+  const ForgottenPasswordScreen({super.key});
   static String routeName = "/ForgotenPasswordScreen";
   @override
   Widget build(BuildContext context) {
