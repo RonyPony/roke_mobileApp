@@ -30,13 +30,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF070B1D),
+      backgroundColor: const Color(0xFF070B1D),
       body: Center(
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(bottom: 10, top: 30),
                 child: Text(
                   'TODO LO QUE NECESITAS',
@@ -50,10 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     'assets/arrow1.svg',
                     height: 100,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 30,
                   ),
-                  Text(
+                  const Text(
                     'EN UN SOLO LUGAR',
                     style: TextStyle(color: Colors.white, fontSize: 10),
                   ),
@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 'assets/landing1.svg',
                 height: MediaQuery.sizeOf(context).width * .6,
               ),
-              Highlight(),
+              const Highlight(),
               GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(LandingPage.routeName);

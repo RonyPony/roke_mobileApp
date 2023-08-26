@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/screen/home/home.screen.dart';
 import 'package:rokeapp/widgets/mainBtn.widget.dart';
 import 'package:rokeapp/widgets/textField.widget.dart';
@@ -53,32 +52,33 @@ class LoginScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 20, top: 20),
                             child: Row(
                               children: [
-                                Text(
+                                const Text(
                                   "ACCEDER",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 25),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8,
                                 ),
                                 Container(
                                   height: 1,
                                   width: MediaQuery.sizeOf(context).width * .48,
                                   decoration:
-                                      BoxDecoration(color: Colors.white),
+                                      const BoxDecoration(color: Colors.white),
                                 )
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
-                          RokeTextField(placeHolder: "email"),
-                          RokeTextField(placeHolder: "clave"),
+                          const RokeTextField(placeHolder: "email"),
+                          const RokeTextField(placeHolder: "clave"),
                           Container(
                             height: 1,
                             width: MediaQuery.sizeOf(context).width * .7,
-                            decoration: BoxDecoration(color: Colors.white),
+                            decoration:
+                                const BoxDecoration(color: Colors.white),
                           )
                         ],
                       ),
@@ -90,8 +90,8 @@ class LoginScreen extends StatelessWidget {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                           HomeScreen.routeName, (route) => false);
                     },
-                    child: RokeMainBtn(text: "entrar")),
-                SizedBox(
+                    child: const RokeMainBtn(text: "entrar")),
+                const SizedBox(
                   height: 30,
                 ),
                 GestureDetector(
@@ -99,7 +99,7 @@ class LoginScreen extends StatelessWidget {
                     Navigator.of(context)
                         .pushNamed(ForgottenPasswordScreen.routeName);
                   },
-                  child: Text(
+                  child: const Text(
                     "OLVIDASTE TU CLAVE ?",
                     style: TextStyle(color: Colors.white),
                   ),

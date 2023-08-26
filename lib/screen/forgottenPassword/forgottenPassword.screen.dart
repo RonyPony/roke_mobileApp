@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/widgets/mainBtn.widget.dart';
 import 'package:rokeapp/widgets/textField.widget.dart';
 
 class ForgottenPasswordScreen extends StatelessWidget {
   const ForgottenPasswordScreen({super.key});
-  static String routeName = "/ForgotenPasswordScreen";
+  static String routeName = "/ForgottenPasswordScreen";
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -39,37 +40,38 @@ class ForgottenPasswordScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 20, top: 20),
                           child: Row(
                             children: [
-                              Text(
+                              const Text(
                                 "RECUPERAR CLAVE",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 25),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               Container(
                                 height: 1,
                                 width: MediaQuery.sizeOf(context).width * .2,
-                                decoration: BoxDecoration(color: Colors.white),
+                                decoration:
+                                    const BoxDecoration(color: Colors.white),
                               )
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
-                        RokeTextField(placeHolder: "email"),
+                        const RokeTextField(placeHolder: "email"),
                         Container(
                           height: 1,
                           width: MediaQuery.sizeOf(context).width * .7,
-                          decoration: BoxDecoration(color: Colors.white),
+                          decoration: const BoxDecoration(color: Colors.white),
                         )
                       ],
                     ),
                   ),
                 ],
               ),
-              RokeMainBtn(text: "solicitar"),
+              const RokeMainBtn(text: "solicitar"),
             ],
           ),
         ),
