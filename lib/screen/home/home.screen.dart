@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rokeapp/screen/asigmentsDetails/assigmentsDetails.screen.dart';
+import 'package:rokeapp/screen/asigmentsDetailsList/assigmentsDetailsList.screen.dart';
 import 'package:rokeapp/screen/completedasigmentsList/completedAssigmentsList.screen.dart';
 import 'package:rokeapp/screen/stats/stats.screen.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
@@ -150,7 +150,7 @@ class HomeScreen extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context)
-                        .pushNamed(AssignmentsDetails.routeName);
+                        .pushNamed(AssignmentsDetailList.routeName);
                   },
                   child: _buildAnOption(
                       "asignaciones",

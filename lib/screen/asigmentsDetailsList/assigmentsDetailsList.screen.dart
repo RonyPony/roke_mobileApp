@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rokeapp/screen/asigmentsDetails/assigmentsDetails.screen.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
-import 'package:rokeapp/widgets/cartesian.chart.widget.dart';
-import 'package:rokeapp/widgets/pie.chart.widget.dart';
 
-class StatsScreen extends StatelessWidget {
-  const StatsScreen({super.key});
-  static String routeName = "/StatsScreen";
+class AssignmentsDetailList extends StatelessWidget {
+  const AssignmentsDetailList({super.key});
+  static String routeName = "/AssigmentDetailsList";
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -22,10 +21,7 @@ class StatsScreen extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
-              children: [
-                _buildHeaderTitle(),
-                _buildPane(context),
-              ],
+              children: [_buildHeaderTitle(), _buildPane(context)],
             ),
           ),
         ),
@@ -65,7 +61,7 @@ class StatsScreen extends StatelessWidget {
 
   _buildPane(BuildContext context) {
     return Container(
-      // height: MediaQuery.sizeOf(context).height * .69,
+      height: MediaQuery.sizeOf(context).height * .69,
       width: MediaQuery.sizeOf(context).width * .9,
       decoration: BoxDecoration(
           color: Colors.grey.withOpacity(.4),
@@ -80,19 +76,16 @@ class StatsScreen extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: Color(0xff00409F),
+                      color: Color(0xffAC8700),
                       borderRadius: BorderRadius.circular(50)),
-                  child: SvgPicture.asset(
-                    'assets/stats.svg',
-                    color: Colors.white,
-                  ),
+                  child: SvgPicture.asset('assets/task.svg'),
                 ),
                 SizedBox(
                   width: 20,
                 ),
                 Text(
                   "Mis Asignaciones",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  style: TextStyle(fontSize: 20, color: Color(0xffAC8700)),
                 )
               ],
             ),
@@ -100,34 +93,45 @@ class StatsScreen extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          _buildStats(context),
+          _buildList(context)
         ],
       ),
     );
   }
 
-  _buildStats(BuildContext context) {
-    List<PieData> dataChar = [
-      PieData("COMPLETADAS 30%", 30, "opcion 1"),
-      PieData("PENDIENTES 30%", 30, "opcion 2"),
-      PieData("CANCELADAS 40%", 40, "opcion 2"),
-    ];
-    return Column(
-      children: [_buildPie(dataChar), _buildCartesian()],
+  _buildList(BuildContext context) {
+    return Container(
+      height: MediaQuery.sizeOf(context).height * .5,
+      width: MediaQuery.sizeOf(context).width * .80,
+      child: ListView.builder(
+        itemCount: 4000,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              child: ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, AssignmentsDetail.routeName,
+                      arguments: index);
+                },
+                leading: SvgPicture.asset('assets/pendingtask.svg'),
+                subtitle: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset('assets/location.svg'),
+                      Text("Av. Maximo Gomez " + index.toString()),
+                    ],
+                  ),
+                ),
+                title: Text("Mantenimiento " + (index + 1).toString()),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
-
-  CartesianChart _buildCartesian() {
-    return CartesianChart(
-      data: [
-        ChartData('ASIG. 146', 12),
-        ChartData('ASIG. 147', 15),
-        ChartData('ASIG. 148', 30),
-        ChartData('ASIG. 149', 6.4),
-        ChartData('ASIG. 150', 14)
-      ],
-    );
-  }
-
-  PieChart _buildPie(List<PieData> dataChar) => PieChart(data: dataChar);
 }

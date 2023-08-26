@@ -2,11 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 
-class AssignmentsDetails extends StatelessWidget {
-  const AssignmentsDetails({super.key});
+class AssignmentsDetail extends StatefulWidget {
+  const AssignmentsDetail({super.key});
+
   static String routeName = "/AssigmentDetails";
+
+  @override
+  State<AssignmentsDetail> createState() => _AssignmentsDetailState();
+}
+
+class _AssignmentsDetailState extends State<AssignmentsDetail> {
+  late int _id;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <dynamic, dynamic>{}) as int;
+    _id = arguments;
     return Stack(children: [
       Image.asset(
         "assets/background1.png",
@@ -83,7 +100,7 @@ class AssignmentsDetails extends StatelessWidget {
                   width: 20,
                 ),
                 Text(
-                  "Mis Asignaciones",
+                  "Asignacion 049",
                   style: TextStyle(fontSize: 20, color: Color(0xffAC8700)),
                 )
               ],
@@ -92,7 +109,7 @@ class AssignmentsDetails extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          _buildList(context)
+          // _buildList(context)
         ],
       ),
     );
