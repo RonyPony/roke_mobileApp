@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rokeapp/screen/onTheWay/onTheWay.screen.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
+import 'package:rokeapp/widgets/photoPicker.widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/rokeButton.widget.dart';
 
-class AssignmentsDetail extends StatefulWidget {
-  const AssignmentsDetail({super.key});
+class OnTheWay extends StatefulWidget {
+  const OnTheWay({super.key});
 
-  static String routeName = "/AssigmentDetails";
+  static String routeName = "/OnTheWay";
 
   @override
-  State<AssignmentsDetail> createState() => _AssignmentsDetailState();
+  State<OnTheWay> createState() => _OnTheWayState();
 }
 
-class _AssignmentsDetailState extends State<AssignmentsDetail> {
+class _OnTheWayState extends State<OnTheWay> {
   late int _id;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -121,15 +120,8 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
           _buildDetails(context),
           Padding(
             padding: EdgeInsets.only(bottom: 30),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, OnTheWay.routeName, (route) => false,
-                    arguments: _id);
-              },
-              child: RokeButton(
-                text: "iniciar trabajo",
-              ),
+            child: RokeButton(
+              text: "iniciar trabajo",
             ),
           )
         ],
@@ -143,115 +135,44 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Container(
+        width: MediaQuery.sizeOf(context).width * .8,
         padding: EdgeInsets.only(left: 20, top: 10, bottom: 20),
         decoration: BoxDecoration(
             color: Color(0xffD9D9D9), borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
             Text(
-              "DETALLES DE LA SOLICITUD",
+              "INICIANDO RUTA",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: spaceBetweenFields,
             ),
-            Row(
-              children: [
-                Text(
-                  "TIPO DE SOLICITUD",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )
-              ],
+            SvgPicture.asset('assets/route.svg'),
+            Container(
+              width: 250,
+              child: Text(
+                  "Mantenimiento de aire acondicionado en DGII suc. Maximo Gomez"),
+            ),
+            Container(
+              width: 270,
+              child: _buildChip("chatea con el encargado", "uri",
+                  SvgPicture.asset("assets/whatsapp.svg")),
             ),
             SizedBox(
-              height: spaceBetweenLines,
+              height: 10,
             ),
-            Text("Mantenimiento de aire acondicionado"),
-            SizedBox(
-              height: spaceBetweenFields,
-            ),
-            Row(
-              children: [
-                Text(
-                  "UBICACION DE LA SOLICITUD",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                _buildChip(
-                  "mapa",
-                  "https://www.google.com/maps/place/Colmado+el+Tri%C3%A1ngulo/@18.4736664,-69.8611164,15z/data=!4m6!3m5!1s0x8eaf87e6f8023bb9:0x5b9419ef3465276e!8m2!3d18.4736966!4d-69.8508367!16s%2Fg%2F11dflr39fl?entry=ttu",
+            Container(
+              width: 150,
+              child: _buildChip(
+                  "ir con gps",
+                  "uri",
                   SvgPicture.asset(
-                    'assets/location.svg',
+                    "assets/location.svg",
                     color: Colors.white,
-                  ),
-                )
-              ],
+                  )),
             ),
-            SizedBox(
-              height: spaceBetweenLines,
-            ),
-            Text("DGII SUC. MAXIMO GOMEZ"),
-            SizedBox(
-              height: spaceBetweenFields,
-            ),
-            Row(
-              children: [
-                Text(
-                  "NOMBRE DE CONTACTO",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            SizedBox(
-              height: spaceBetweenLines,
-            ),
-            Text("LIC. ERNESTO CARBAJAL"),
-            SizedBox(
-              height: spaceBetweenFields,
-            ),
-            Row(
-              children: [
-                Text(
-                  "NUMERO DE CONTACTO",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                _buildChip(
-                  "whatsapp",
-                  "https://www.google.com/maps/place/Colmado+el+Tri%C3%A1ngulo/@18.4736664,-69.8611164,15z/data=!4m6!3m5!1s0x8eaf87e6f8023bb9:0x5b9419ef3465276e!8m2!3d18.4736966!4d-69.8508367!16s%2Fg%2F11dflr39fl?entry=ttu",
-                  SvgPicture.asset(
-                    'assets/whatsapp.svg',
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: spaceBetweenLines,
-            ),
-            Text("+1 (809) 716-2373"),
-            SizedBox(
-              height: spaceBetweenFields,
-            ),
-            Row(
-              children: [
-                Text(
-                  "DETALLE",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            SizedBox(
-              height: spaceBetweenLines,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    color: Color(0xffB0B0B0),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Text(
-                    "ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo "),
-              ),
-            )
+            PhotoPicker()
           ],
         ),
       ),
