@@ -30,8 +30,8 @@ class AssignmentsDetailList extends StatelessWidget {
   }
 
   _buildHeaderTitle() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 20),
+    return const Padding(
+      padding: EdgeInsets.only(top: 20, left: 20),
       child: Column(
         children: [
           Row(
@@ -56,7 +56,7 @@ class AssignmentsDetailList extends StatelessWidget {
   }
 
   _buildBottomMenu(BuildContext context) {
-    return BottomMenu();
+    return const BottomMenu();
   }
 
   _buildPane(BuildContext context) {
@@ -74,23 +74,23 @@ class AssignmentsDetailList extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: Color(0xffAC8700),
+                      color: const Color(0xffAC8700),
                       borderRadius: BorderRadius.circular(50)),
                   child: SvgPicture.asset('assets/task.svg'),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
-                Text(
+                const Text(
                   "Mis Asignaciones",
                   style: TextStyle(fontSize: 20, color: Color(0xffAC8700)),
                 )
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           _buildList(context)
@@ -100,7 +100,7 @@ class AssignmentsDetailList extends StatelessWidget {
   }
 
   _buildList(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.sizeOf(context).height * .5,
       width: MediaQuery.sizeOf(context).width * .80,
       child: ListView.builder(
@@ -122,11 +122,11 @@ class AssignmentsDetailList extends StatelessWidget {
                   child: Row(
                     children: [
                       SvgPicture.asset('assets/location.svg'),
-                      Text("Av. Maximo Gomez " + index.toString()),
+                      Text("Av. Maximo Gomez $index"),
                     ],
                   ),
                 ),
-                title: Text("Mantenimiento " + (index + 1).toString()),
+                title: Text("Mantenimiento ${index + 1}"),
               ),
             ),
           );

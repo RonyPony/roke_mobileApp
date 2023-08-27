@@ -10,12 +10,12 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF070B1D),
+      backgroundColor: const Color(0xFF070B1D),
       body: SafeArea(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -36,8 +36,8 @@ class LandingPage extends StatelessWidget {
               )
             ],
           ),
-          Highlight(),
-          Row(
+          const Highlight(),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(

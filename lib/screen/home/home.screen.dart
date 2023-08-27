@@ -36,8 +36,8 @@ class HomeScreen extends StatelessWidget {
   }
 
   _buildHeaderTitle() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 20),
+    return const Padding(
+      padding: EdgeInsets.only(top: 20, left: 20),
       child: Column(
         children: [
           Row(
@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.only(top: 50),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             height: 150,
             width: MediaQuery.sizeOf(context).width,
             child: ListView.builder(
@@ -98,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(10),
                   child: Container(
-                    padding: EdgeInsets.only(left: 20, top: 10, right: 20),
+                    padding: const EdgeInsets.only(left: 20, top: 10, right: 20),
                     decoration: BoxDecoration(
                         gradient: gradients[index],
                         borderRadius: BorderRadius.circular(30)),
@@ -109,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                             Text(
                               data.entries.toList()[index].key.toString(),
                               style:
-                                  TextStyle(fontSize: 60, color: Colors.white),
+                                  const TextStyle(fontSize: 60, color: Colors.white),
                             )
                           ],
                         ),
@@ -121,7 +121,7 @@ class HomeScreen extends StatelessWidget {
                                   .value
                                   .toString()
                                   .toUpperCase(),
-                              style: TextStyle(color: Colors.white),
+                              style: const TextStyle(color: Colors.white),
                             )
                           ],
                         )
@@ -155,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                   child: _buildAnOption(
                       "asignaciones",
                       SvgPicture.asset('assets/task.svg'),
-                      Color(0xffAC8700),
+                      const Color(0xffAC8700),
                       context),
                 ),
                 GestureDetector(
@@ -166,7 +166,7 @@ class HomeScreen extends StatelessWidget {
                   child: _buildAnOption(
                       "completadas",
                       SvgPicture.asset('assets/done.svg'),
-                      Color(0xff0E6500),
+                      const Color(0xff0E6500),
                       context),
                 )
               ],
@@ -181,13 +181,13 @@ class HomeScreen extends StatelessWidget {
                   child: _buildAnOption(
                       "estadisticas",
                       SvgPicture.asset('assets/stats.svg'),
-                      Color(0xffB1B1B1),
+                      const Color(0xffB1B1B1),
                       context),
                 ),
                 _buildAnOption(
                     "identificacion",
                     SvgPicture.asset('assets/carnet.svg'),
-                    Color(0xff0A87BC),
+                    const Color(0xff0A87BC),
                     context)
               ],
             )
@@ -212,11 +212,11 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                     color: red, borderRadius: BorderRadius.circular(50)),
                 child: svgPicture),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
@@ -230,6 +230,6 @@ class HomeScreen extends StatelessWidget {
   }
 
   _buildBottomMenu(BuildContext context) {
-    return BottomMenu();
+    return const BottomMenu();
   }
 }

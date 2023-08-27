@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rokeapp/screen/workInProgress/workInProgress.dart';
+import 'package:rokeapp/screen/finalWorkInform/finalWorkInform.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 import 'package:rokeapp/widgets/photoPicker.widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
+import '../../widgets/chip.widget.dart';
 import '../../widgets/rokeButton.widget.dart';
 
-class OnTheWay extends StatefulWidget {
-  const OnTheWay({super.key});
+class WorkInCompleted extends StatefulWidget {
+  const WorkInCompleted({super.key});
 
-  static String routeName = "/OnTheWay";
+  static String routeName = "/WorkInCompleted";
 
   @override
-  State<OnTheWay> createState() => _OnTheWayState();
+  State<WorkInCompleted> createState() => _WorkInCompletedState();
 }
 
-class _OnTheWayState extends State<OnTheWay> {
+class _WorkInCompletedState extends State<WorkInCompleted> {
   late int _id;
   @override
   void initState() {
@@ -122,15 +122,9 @@ class _OnTheWayState extends State<OnTheWay> {
           _buildDetails(context),
           Padding(
             padding: EdgeInsets.only(bottom: 30),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, WorkInProgress.routeName, (route) => false,
-                    arguments: _id);
-              },
-              child: RokeButton(
-                text: "ya he llegado",
-              ),
+            child: RokeButton(
+              icon: SvgPicture.asset("assets/lock.svg"),
+              text: "cerrar solicitud",
             ),
           )
         ],
@@ -152,83 +146,45 @@ class _OnTheWayState extends State<OnTheWay> {
         child: Column(
           children: [
             const Text(
-              "INICIANDO RUTA",
+              "TRABAJO COMPLETADO",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: spaceBetweenFields,
             ),
-            SvgPicture.asset('assets/route.svg'),
-            const SizedBox(
-              width: 250,
-              child: Text(
-                  "Mantenimiento de aire acondicionado en DGII suc. Maximo Gomez"),
+            SvgPicture.asset('assets/jobdone.svg'),
+            Text("HORA DE FINALIZACION"),
+            Text(
+              "3:56 PM",
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 20,
             ),
             SizedBox(
-              width: 270,
-              child: _buildChip("chatea con el encargado", "uri",
-                  SvgPicture.asset("assets/whatsapp.svg")),
+              height: 20,
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              width: 150,
-              child: _buildChip(
-                  "ir con gps",
-                  "uri",
-                  SvgPicture.asset(
-                    "assets/location.svg",
-                    color: Colors.white,
-                  )),
+            Row(
+              children: [
+                SizedBox(
+                    width: 310,
+                    child: RokeChip(
+                      s: 'completar reporte de trabajo',
+                      uri: FinalWorkInform.routeName,
+                      isLocalUrl: true,
+                      icon: SvgPicture.asset("assets/report.svg"),
+                      localArguments: _id,
+                    )),
+              ],
             ),
             SizedBox(
               height: 20,
             ),
-            const PhotoPicker()
+            Text(
+              "COMPLETA EL REPORTE PARA FINALIZAR LA SOLICITUD",
+              style: TextStyle(color: Colors.red.withOpacity(.5)),
+            )
           ],
-        ),
-      ),
-    );
-  }
-
-  _buildChip(String s, String uri, SvgPicture icon) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20),
-      child: GestureDetector(
-        onTap: () async {
-          // if (!await launchUrl(Uri.parse(uri))) {
-          //   throw Exception('Could not launch $uri');
-          // }
-          if (!await launchUrl(
-            Uri.parse(uri),
-            mode: LaunchMode.inAppWebView,
-            webViewConfiguration: const WebViewConfiguration(
-                enableDomStorage: true, enableJavaScript: true),
-          )) {
-            throw Exception('Could not launch $uri');
-          }
-        },
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          decoration: BoxDecoration(
-              color: const Color(0xffFF7A00),
-              borderRadius: BorderRadius.circular(10)),
-          child: Row(
-            children: [
-              icon,
-              const SizedBox(
-                width: 5,
-              ),
-              Text(
-                s.toUpperCase(),
-                style: const TextStyle(color: Colors.white),
-              ),
-            ],
-          ),
         ),
       ),
     );

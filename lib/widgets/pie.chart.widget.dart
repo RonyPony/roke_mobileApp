@@ -10,8 +10,8 @@ class PieChart extends StatelessWidget {
         child: SfCircularChart(
             title: ChartTitle(
                 text: 'Asignaciones por estados'.toUpperCase(),
-                textStyle: TextStyle(color: Colors.white)),
-            legend: Legend(isVisible: true),
+                textStyle: const TextStyle(color: Colors.white)),
+            legend: const Legend(isVisible: true),
             series: <PieSeries<PieData, String>>[
           PieSeries<PieData, String>(
               // animationDelay: 10,
@@ -22,7 +22,7 @@ class PieChart extends StatelessWidget {
               xValueMapper: (PieData data, _) => data.xData,
               yValueMapper: (PieData data, _) => data.yData,
               dataLabelMapper: (PieData data, _) => data.text,
-              dataLabelSettings: DataLabelSettings(isVisible: true)),
+              dataLabelSettings: const DataLabelSettings(isVisible: true)),
         ]));
   }
 }

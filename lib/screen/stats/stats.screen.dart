@@ -34,8 +34,8 @@ class StatsScreen extends StatelessWidget {
   }
 
   _buildHeaderTitle() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 20),
+    return const Padding(
+      padding: EdgeInsets.only(top: 20, left: 20),
       child: Column(
         children: [
           Row(
@@ -60,7 +60,7 @@ class StatsScreen extends StatelessWidget {
   }
 
   _buildBottomMenu(BuildContext context) {
-    return BottomMenu();
+    return const BottomMenu();
   }
 
   _buildPane(BuildContext context) {
@@ -78,26 +78,26 @@ class StatsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: Color(0xff00409F),
+                      color: const Color(0xff00409F),
                       borderRadius: BorderRadius.circular(50)),
                   child: SvgPicture.asset(
                     'assets/stats.svg',
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
-                Text(
+                const Text(
                   "Mis Asignaciones",
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 )
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           _buildStats(context),

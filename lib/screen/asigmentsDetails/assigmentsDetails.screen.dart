@@ -4,6 +4,7 @@ import 'package:rokeapp/screen/onTheWay/onTheWay.screen.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../widgets/chip.widget.dart';
 import '../../widgets/rokeButton.widget.dart';
 
 class AssignmentsDetail extends StatefulWidget {
@@ -44,7 +45,7 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
               children: [
                 _buildHeaderTitle(),
                 _buildPane(context),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 )
               ],
@@ -56,8 +57,8 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
   }
 
   _buildHeaderTitle() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 20),
+    return const Padding(
+      padding: EdgeInsets.only(top: 20, left: 20),
       child: Column(
         children: [
           Row(
@@ -82,7 +83,7 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
   }
 
   _buildBottomMenu(BuildContext context) {
-    return BottomMenu();
+    return const BottomMenu();
   }
 
   _buildPane(BuildContext context) {
@@ -99,35 +100,36 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: Color(0xffAC8700),
+                      color: const Color(0xffAC8700),
                       borderRadius: BorderRadius.circular(50)),
                   child: SvgPicture.asset('assets/task.svg'),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Text(
-                  "Asignacion ${_id}",
-                  style: TextStyle(fontSize: 20, color: Color(0xffAC8700)),
+                  "Asignacion $_id",
+                  style:
+                      const TextStyle(fontSize: 20, color: Color(0xffAC8700)),
                 )
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           _buildDetails(context),
           Padding(
-            padding: EdgeInsets.only(bottom: 30),
+            padding: const EdgeInsets.only(bottom: 30),
             child: GestureDetector(
               onTap: () {
                 Navigator.pushNamedAndRemoveUntil(
                     context, OnTheWay.routeName, (route) => false,
                     arguments: _id);
               },
-              child: RokeButton(
+              child: const RokeButton(
                 text: "iniciar trabajo",
               ),
             ),
@@ -143,19 +145,20 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Container(
-        padding: EdgeInsets.only(left: 20, top: 10, bottom: 20),
+        padding: const EdgeInsets.only(left: 20, top: 10, bottom: 20),
         decoration: BoxDecoration(
-            color: Color(0xffD9D9D9), borderRadius: BorderRadius.circular(20)),
+            color: const Color(0xffD9D9D9),
+            borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
-            Text(
+            const Text(
               "DETALLES DE LA SOLICITUD",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: spaceBetweenFields,
             ),
-            Row(
+            const Row(
               children: [
                 Text(
                   "TIPO DE SOLICITUD",
@@ -166,20 +169,22 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
             SizedBox(
               height: spaceBetweenLines,
             ),
-            Text("Mantenimiento de aire acondicionado"),
+            const Text("Mantenimiento de aire acondicionado"),
             SizedBox(
               height: spaceBetweenFields,
             ),
             Row(
               children: [
-                Text(
+                const Text(
                   "UBICACION DE LA SOLICITUD",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                _buildChip(
-                  "mapa",
-                  "https://www.google.com/maps/place/Colmado+el+Tri%C3%A1ngulo/@18.4736664,-69.8611164,15z/data=!4m6!3m5!1s0x8eaf87e6f8023bb9:0x5b9419ef3465276e!8m2!3d18.4736966!4d-69.8508367!16s%2Fg%2F11dflr39fl?entry=ttu",
-                  SvgPicture.asset(
+                RokeChip(
+                  s: 'mapa',
+                  uri:
+                      "https://www.google.com/maps/place/Colmado+el+Tri%C3%A1ngulo/@18.4736664,-69.8611164,15z/data=!4m6!3m5!1s0x8eaf87e6f8023bb9:0x5b9419ef3465276e!8m2!3d18.4736966!4d-69.8508367!16s%2Fg%2F11dflr39fl?entry=ttu",
+                  isLocalUrl: false,
+                  icon: SvgPicture.asset(
                     'assets/location.svg',
                     color: Colors.white,
                   ),
@@ -189,11 +194,11 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
             SizedBox(
               height: spaceBetweenLines,
             ),
-            Text("DGII SUC. MAXIMO GOMEZ"),
+            const Text("DGII SUC. MAXIMO GOMEZ"),
             SizedBox(
               height: spaceBetweenFields,
             ),
-            Row(
+            const Row(
               children: [
                 Text(
                   "NOMBRE DE CONTACTO",
@@ -204,20 +209,22 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
             SizedBox(
               height: spaceBetweenLines,
             ),
-            Text("LIC. ERNESTO CARBAJAL"),
+            const Text("LIC. ERNESTO CARBAJAL"),
             SizedBox(
               height: spaceBetweenFields,
             ),
             Row(
               children: [
-                Text(
+                const Text(
                   "NUMERO DE CONTACTO",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                _buildChip(
-                  "whatsapp",
-                  "https://www.google.com/maps/place/Colmado+el+Tri%C3%A1ngulo/@18.4736664,-69.8611164,15z/data=!4m6!3m5!1s0x8eaf87e6f8023bb9:0x5b9419ef3465276e!8m2!3d18.4736966!4d-69.8508367!16s%2Fg%2F11dflr39fl?entry=ttu",
-                  SvgPicture.asset(
+                RokeChip(
+                  s: 'whatsapp',
+                  uri:
+                      "https://www.google.com/maps/place/Colmado+el+Tri%C3%A1ngulo/@18.4736664,-69.8611164,15z/data=!4m6!3m5!1s0x8eaf87e6f8023bb9:0x5b9419ef3465276e!8m2!3d18.4736966!4d-69.8508367!16s%2Fg%2F11dflr39fl?entry=ttu",
+                  isLocalUrl: false,
+                  icon: SvgPicture.asset(
                     'assets/whatsapp.svg',
                   ),
                 )
@@ -226,11 +233,11 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
             SizedBox(
               height: spaceBetweenLines,
             ),
-            Text("+1 (809) 716-2373"),
+            const Text("+1 (809) 716-2373"),
             SizedBox(
               height: spaceBetweenFields,
             ),
-            Row(
+            const Row(
               children: [
                 Text(
                   "DETALLE",
@@ -244,54 +251,15 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    color: Color(0xffB0B0B0),
+                    color: const Color(0xffB0B0B0),
                     borderRadius: BorderRadius.circular(20)),
-                child: Text(
+                child: const Text(
                     "ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo ejemplo "),
               ),
             )
           ],
-        ),
-      ),
-    );
-  }
-
-  _buildChip(String s, String uri, SvgPicture icon) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20),
-      child: GestureDetector(
-        onTap: () async {
-          // if (!await launchUrl(Uri.parse(uri))) {
-          //   throw Exception('Could not launch $uri');
-          // }
-          if (!await launchUrl(
-            Uri.parse(uri),
-            mode: LaunchMode.inAppWebView,
-            webViewConfiguration: const WebViewConfiguration(
-                enableDomStorage: true, enableJavaScript: true),
-          )) {
-            throw Exception('Could not launch $uri');
-          }
-        },
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          decoration: BoxDecoration(
-              color: Color(0xffFF7A00),
-              borderRadius: BorderRadius.circular(10)),
-          child: Row(
-            children: [
-              icon,
-              SizedBox(
-                width: 5,
-              ),
-              Text(
-                s.toUpperCase(),
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
-          ),
         ),
       ),
     );

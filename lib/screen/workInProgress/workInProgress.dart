@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rokeapp/screen/workInProgress/workInProgress.dart';
+import 'package:rokeapp/screen/workCompleted/workCompleted.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 import 'package:rokeapp/widgets/photoPicker.widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/rokeButton.widget.dart';
 
-class OnTheWay extends StatefulWidget {
-  const OnTheWay({super.key});
+class WorkInProgress extends StatefulWidget {
+  const WorkInProgress({super.key});
 
-  static String routeName = "/OnTheWay";
+  static String routeName = "/WorkInProgress";
 
   @override
-  State<OnTheWay> createState() => _OnTheWayState();
+  State<WorkInProgress> createState() => _WorkInProgressState();
 }
 
-class _OnTheWayState extends State<OnTheWay> {
+class _WorkInProgressState extends State<WorkInProgress> {
   late int _id;
   @override
   void initState() {
@@ -125,11 +125,11 @@ class _OnTheWayState extends State<OnTheWay> {
             child: GestureDetector(
               onTap: () {
                 Navigator.pushNamedAndRemoveUntil(
-                    context, WorkInProgress.routeName, (route) => false,
+                    context, WorkInCompleted.routeName, (route) => false,
                     arguments: _id);
               },
               child: RokeButton(
-                text: "ya he llegado",
+                text: "trabajo terminado",
               ),
             ),
           )
@@ -152,18 +152,25 @@ class _OnTheWayState extends State<OnTheWay> {
         child: Column(
           children: [
             const Text(
-              "INICIANDO RUTA",
+              "TRABAJO EN PROCESO",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: spaceBetweenFields,
             ),
-            SvgPicture.asset('assets/route.svg'),
-            const SizedBox(
-              width: 250,
-              child: Text(
-                  "Mantenimiento de aire acondicionado en DGII suc. Maximo Gomez"),
+            SvgPicture.asset('assets/working.svg'),
+            Text("HORA DE INICIO"),
+            Text(
+              "1:45 PM",
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            const PhotoPicker(),
             SizedBox(
               height: 20,
             ),
@@ -172,23 +179,6 @@ class _OnTheWayState extends State<OnTheWay> {
               child: _buildChip("chatea con el encargado", "uri",
                   SvgPicture.asset("assets/whatsapp.svg")),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              width: 150,
-              child: _buildChip(
-                  "ir con gps",
-                  "uri",
-                  SvgPicture.asset(
-                    "assets/location.svg",
-                    color: Colors.white,
-                  )),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            const PhotoPicker()
           ],
         ),
       ),
