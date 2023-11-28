@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:rokeapp/models/ticket.model.dart';
+import 'package:rokeapp/provider/ticket.provider.dart';
 import 'package:rokeapp/screen/asigmentsDetails/assigmentsDetails.screen.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 
@@ -93,18 +96,47 @@ class AssignmentsDetailList extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          _buildList(context)
+          FutureBuilder<Widget>(
+            future: _buildList(context),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return LinearProgressIndicator();
+              }
+              if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                return snapshot.data!;
+              }
+              return CircularProgressIndicator();
+            },
+          )
         ],
       ),
     );
   }
 
-  _buildList(BuildContext context) {
+  String validateTextLength(String text,int maxChars){
+    if (text.length>maxChars) {
+      return '${text.substring(0,maxChars)}...';
+    }else{
+      return text;
+    }
+  }
+
+  String validateLocationName(String locationId){
+    if (locationId =="00000000-0000-0000-0000-000000000000") {
+      return "Ubicacion no especificada";
+    }else{
+      return locationId;
+    }
+  }
+
+  Future<Widget> _buildList(BuildContext context) async {
+    final _ticketProvider =Provider.of<TicketProvider>(context, listen: false);
+    List<Ticket> ticketList = await _ticketProvider.getAll();
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * .5,
       width: MediaQuery.sizeOf(context).width * .80,
       child: ListView.builder(
-        itemCount: 4000,
+        itemCount: ticketList.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
@@ -119,14 +151,25 @@ class AssignmentsDetailList extends StatelessWidget {
                 leading: SvgPicture.asset('assets/pendingtask.svg'),
                 subtitle: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
+                  child: Column(
                     children: [
-                      SvgPicture.asset('assets/location.svg'),
-                      Text("Av. Maximo Gomez $index"),
+                      Row(
+                        children: [
+                          SvgPicture.asset('assets/done.svg',color: Colors.yellow.shade600,height: 25,),
+                          Text("Tipo: "),
+                          Text(validateTextLength(ticketList[index].ticketType!,20)),
+                        ],
+                      ),
+                       Row(
+                        children: [
+                          SvgPicture.asset('assets/location.svg'),
+                          Text(validateTextLength(validateLocationName(ticketList[index].locationId!),20)),
+                        ],
+                      ),
                     ],
                   ),
                 ),
-                title: Text("Mantenimiento ${index + 1}"),
+                title: Text(validateTextLength(ticketList[index].description!,20)),
               ),
             ),
           );

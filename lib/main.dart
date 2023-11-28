@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:rokeapp/provider/auth.provider.dart';
+import 'package:rokeapp/provider/ticket.provider.dart';
 import 'package:rokeapp/routes/routes.dart';
 import 'package:rokeapp/screen/landing/landing.screen.dart';
 import 'package:rokeapp/services/auth.service.dart';
+import 'package:rokeapp/services/ticket.service.dart';
 import 'package:rokeapp/widgets/highlight.widget.dart';
 
 void main() {
@@ -19,6 +21,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthProvider(AuthService()),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => TicketProvider(TicketService()),
         ),
       ],
       child: MaterialApp(

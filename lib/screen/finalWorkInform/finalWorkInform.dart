@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/screen/workCompleted/workCompleted.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
 import 'package:rokeapp/widgets/photoPicker.widget.dart';
 import 'package:rokeapp/widgets/textField.widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/rokeButton.widget.dart';
 

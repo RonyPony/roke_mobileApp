@@ -4,6 +4,7 @@ class RokeTextField extends StatelessWidget {
   final String placeHolder;
   final TextEditingController? receivedController;
   final TextInputType? keyboardType;
+  final bool? isPassword;
   final void Function()? onTap;
   final void Function()? onChanged;
   final double? widthAdjustment;
@@ -19,7 +20,8 @@ class RokeTextField extends StatelessWidget {
       this.keyboardType = TextInputType.name,
       this.widthAdjustment = .78,
       this.maxline = 1,
-      this.isLongText = false});
+      this.isLongText = false,
+      this.isPassword = false});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class RokeTextField extends StatelessWidget {
           keyboardType: keyboardType,
           controller: receivedController,
           maxLines: maxline,
+          obscureText: isPassword!,
           onChanged: (value) {
             if (onChanged != null) {
               onChanged!();

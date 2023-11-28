@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:rokeapp/screen/onTheWay/onTheWay.screen.dart';
 import 'package:rokeapp/widgets/bottomMenu.widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../widgets/chip.widget.dart';
 import '../../widgets/rokeButton.widget.dart';
@@ -20,7 +19,6 @@ class _AssignmentsDetailState extends State<AssignmentsDetail> {
   late int _id;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

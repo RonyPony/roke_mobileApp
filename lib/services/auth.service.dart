@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:rokeapp/config/constants.dart';
 import 'package:rokeapp/contracts/auth.contract.dart';
 import 'package:rokeapp/models/credentials.model.dart';
 import 'package:rokeapp/models/processResponse.model.dart';
@@ -12,7 +13,7 @@ class AuthService implements AuthContract {
     try {
       http.Response? response;
       response = await http.post(
-          Uri.parse('http://69.197.150.152:8010/api/user/login'),
+          Uri.parse('${serverurl}api/user/login'),
           headers: <String, String>{
             'Content-Type': 'application/json',
           },

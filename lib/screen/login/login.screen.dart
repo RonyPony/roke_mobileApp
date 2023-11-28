@@ -9,14 +9,24 @@ import 'package:rokeapp/widgets/textField.widget.dart';
 
 import '../forgottenPassword/forgottenPassword.screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
   static String routeName = "/loginScreen";
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _emailInput = TextEditingController();
+
   TextEditingController _passwordInput = TextEditingController();
+
   String errMsj = '';
+
   @override
   Widget build(BuildContext context) {
+    
     return Stack(children: [
       Image.asset(
         "assets/background1.png",
@@ -85,6 +95,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           RokeTextField(
                             placeHolder: "clave",
+                            isPassword: true,
                             receivedController: _passwordInput,
                           ),
                           Container(
@@ -107,17 +118,26 @@ class LoginScreen extends StatelessWidget {
                 ),
                 GestureDetector(
                     onTap: () async {
+                      showMessage("");
                       final _auth =
                           Provider.of<AuthProvider>(context, listen: false);
                       Credentials cred = Credentials(
                           email: _emailInput.text,
                           password: _passwordInput.text);
                       ProcessResponse loguedin = await _auth.login(cred);
+                      if (!validarEmail(_emailInput.text)) {
+                        showMessage("Correo electronico no valido");
+                        return;
+                      }
+                      if (!validarContrasena(_passwordInput.text)) {
+                        showMessage("Clave es requerida");
+                        return;
+                      }
                       if (loguedin.isSuccess!) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
                             HomeScreen.routeName, (route) => false);
                       } else {
-                        showMessage("error");
+                        showMessage("Credenciales Incorrectas");
                       }
                     },
                     child: const RokeMainBtn(text: "entrar")),
@@ -142,7 +162,49 @@ class LoginScreen extends StatelessWidget {
     ]);
   }
 
-  void showMessage(String s) {
-    errMsj = s;
-  }
+  bool validarEmail(String email) {
+  // Expresión regular para validar un email
+  RegExp regex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  return regex.hasMatch(email);
 }
+
+
+  void showMessage(String s) {
+    setState(() {
+      errMsj = s;
+    });
+    
+  }
+  
+    bool validarContrasena(String contrasena) {
+  // Verificar la longitud mínima de la contraseña
+  if (contrasena.length < 1) {
+    return false;
+  }
+
+  // // Verificar si contiene al menos una letra mayúscula
+  // if (!contrasena.contains(RegExp(r'[A-Z]'))) {
+  //   return false;
+  // }
+
+  // // Verificar si contiene al menos una letra minúscula
+  // if (!contrasena.contains(RegExp(r'[a-z]'))) {
+  //   return false;
+  // }
+
+  // // Verificar si contiene al menos un número
+  // if (!contrasena.contains(RegExp(r'[0-9]'))) {
+  //   return false;
+  // }
+
+  // // Verificar si contiene al menos un carácter especial
+  // if (!contrasena.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+  //   return false;
+  // }
+
+  // Si cumple con todos los criterios, la contraseña es válida
+  return true;
+}
+
+  }
+
