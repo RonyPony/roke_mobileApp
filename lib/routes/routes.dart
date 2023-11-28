@@ -16,7 +16,7 @@ import '../screen/asigmentsDetails/assigmentsDetails.screen.dart';
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
     LandingPage.routeName: (BuildContext context) => const LandingPage(),
-    LoginScreen.routeName: (BuildContext context) => const LoginScreen(),
+    LoginScreen.routeName: (BuildContext context) => LoginScreen(),
     ForgottenPasswordScreen.routeName: (BuildContext context) =>
         const ForgottenPasswordScreen(),
     HomeScreen.routeName: (BuildContext context) => const HomeScreen(),

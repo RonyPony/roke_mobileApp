@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rokeapp/models/credentials.model.dart';
+import 'package:rokeapp/models/processResponse.model.dart';
+import 'package:rokeapp/provider/auth.provider.dart';
 import 'package:rokeapp/screen/home/home.screen.dart';
 import 'package:rokeapp/widgets/mainBtn.widget.dart';
 import 'package:rokeapp/widgets/textField.widget.dart';
@@ -6,8 +10,11 @@ import 'package:rokeapp/widgets/textField.widget.dart';
 import '../forgottenPassword/forgottenPassword.screen.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
   static String routeName = "/loginScreen";
+  TextEditingController _emailInput = TextEditingController();
+  TextEditingController _passwordInput = TextEditingController();
+  String errMsj = '';
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
@@ -72,8 +79,14 @@ class LoginScreen extends StatelessWidget {
                           const SizedBox(
                             height: 30,
                           ),
-                          const RokeTextField(placeHolder: "email"),
-                          const RokeTextField(placeHolder: "clave"),
+                          RokeTextField(
+                            placeHolder: "email",
+                            receivedController: _emailInput,
+                          ),
+                          RokeTextField(
+                            placeHolder: "clave",
+                            receivedController: _passwordInput,
+                          ),
                           Container(
                             height: 1,
                             width: MediaQuery.sizeOf(context).width * .7,
@@ -85,10 +98,27 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Text(
+                    errMsj,
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
                 GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                          HomeScreen.routeName, (route) => false);
+                    onTap: () async {
+                      final _auth =
+                          Provider.of<AuthProvider>(context, listen: false);
+                      Credentials cred = Credentials(
+                          email: _emailInput.text,
+                          password: _passwordInput.text);
+                      ProcessResponse loguedin = await _auth.login(cred);
+                      if (loguedin.isSuccess!) {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            HomeScreen.routeName, (route) => false);
+                      } else {
+                        showMessage("error");
+                      }
                     },
                     child: const RokeMainBtn(text: "entrar")),
                 const SizedBox(
@@ -110,5 +140,9 @@ class LoginScreen extends StatelessWidget {
         ),
       )
     ]);
+  }
+
+  void showMessage(String s) {
+    errMsj = s;
   }
 }

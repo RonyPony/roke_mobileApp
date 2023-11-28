@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:rokeapp/provider/auth.provider.dart';
 import 'package:rokeapp/routes/routes.dart';
 import 'package:rokeapp/screen/landing/landing.screen.dart';
+import 'package:rokeapp/services/auth.service.dart';
 import 'package:rokeapp/widgets/highlight.widget.dart';
 
 void main() {
@@ -12,9 +15,16 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: getApplicationRoutes(),
-      home: const MyHomePage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(AuthService()),
+        ),
+      ],
+      child: MaterialApp(
+        routes: getApplicationRoutes(),
+        home: const MyHomePage(),
+      ),
     );
   }
 }
