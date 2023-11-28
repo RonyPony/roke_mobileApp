@@ -132,6 +132,17 @@ class AssignmentsDetailList extends StatelessWidget {
   Future<Widget> _buildList(BuildContext context) async {
     final _ticketProvider =Provider.of<TicketProvider>(context, listen: false);
     List<Ticket> ticketList = await _ticketProvider.getAll();
+    if (ticketList.length==0) {
+      return Column(
+        children: [
+          SvgPicture.asset('assets/jobdone.svg'),
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: Text("No hay asignaciones pendientes",style: TextStyle(color: Colors.white,fontSize: 21),),
+          ),
+        ],
+      );
+    }
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * .5,
       width: MediaQuery.sizeOf(context).width * .80,
@@ -146,7 +157,7 @@ class AssignmentsDetailList extends StatelessWidget {
               child: ListTile(
                 onTap: () {
                   Navigator.pushNamed(context, AssignmentsDetail.routeName,
-                      arguments: index);
+                      arguments: ticketList[index].id);
                 },
                 leading: SvgPicture.asset('assets/pendingtask.svg'),
                 subtitle: SingleChildScrollView(

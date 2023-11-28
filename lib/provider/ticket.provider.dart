@@ -9,4 +9,7 @@ class TicketProvider with ChangeNotifier {
   Future<List<Ticket>> getAll() {
     return _contrato.getAllTickets();
   }
+  Future<Ticket>getById(String id){
+    return _contrato.getTicketById(id);
+  }
 }

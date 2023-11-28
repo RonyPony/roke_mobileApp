@@ -47,9 +47,26 @@ class TicketService implements TicketContract {
   }
 
   @override
-  Future<Ticket> getTicketById() {
-    // TODO: implement getTicketById
-    throw UnimplementedError();
+  Future<Ticket> getTicketById(String id) async {
+    Ticket foundTicket = Ticket();
+    try {
+      var resp = await http.get(Uri.parse('${serverurl}api/Ticket/$id'));
+      if(resp.statusCode == 200){
+        Map<String,dynamic> data = jsonDecode(resp.body);
+        // for (var item in data) {
+        //   foundTicket=Ticket.fromJson(item);
+        // }
+        foundTicket = Ticket.fromJson(data);
+        return foundTicket;
+      }
+
+      if(resp.statusCode=="404"){
+        print("Ticket Not Found");
+      }
+      return foundTicket;
+    }catch(ex){
+      return foundTicket;
+    }
   }
  
 }
